@@ -3,9 +3,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ToDoListAPI.Models;
 using ToDoListAPI.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ToDoListAPI.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class TodosController : ControllerBase
