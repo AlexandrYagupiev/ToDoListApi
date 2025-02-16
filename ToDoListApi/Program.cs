@@ -40,7 +40,7 @@ namespace ToDoListApi
      });
             builder.Services.AddAuthorization();
 
-            // Настроить политику CORS
+            // Настройка политики CORS
             builder.Services.AddCors(options =>
             {
                 options.AddPolicy(name: "MyCorsPolicy", policy =>
