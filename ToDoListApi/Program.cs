@@ -6,6 +6,8 @@ using ToDoListAPI.Services;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System.Text;
+using FluentValidation.AspNetCore;
+using System.Security.Cryptography;
 
 namespace ToDoListApi
 {
@@ -23,6 +25,9 @@ namespace ToDoListApi
             builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
             builder.Services.AddScoped<ITodoRepository, TodoRepository>();
             builder.Services.AddScoped<ITodoService, TodoService>();
+
+            builder.Services.AddControllers()
+    .AddFluentValidation(config => config.RegisterValidatorsFromAssemblies(AppDomain.CurrentDomain.GetAssemblies()));
 
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
      .AddJwtBearer(options =>
@@ -56,6 +61,7 @@ namespace ToDoListApi
             builder.Services.AddSwaggerGen();
 
             var app = builder.Build();
+
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
